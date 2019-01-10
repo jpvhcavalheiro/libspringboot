@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-//NamedQuery(name = Book.GET_ALL_BOOKS_QUERY_NAME, query = "SELECT b FROM Book b")
+@NamedQuery(name = Book.GET_ALL_BOOKS_QUERY_NAME, query = "SELECT b FROM Book b")
 @Entity
 @Table(name = "Books")
 public class Book extends BaseEntity {
