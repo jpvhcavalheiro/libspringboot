@@ -120,5 +120,13 @@ public class BookServices {
 		return bookBusiness.getAllAvailableBooks();
 	}
 	
+	@GET
+	@Path("/researchbyisbn")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Book> researchBookByIsbn(String isbnToTest){
+		return bookBusiness.researchBookByIsbn(isbnToTest);
+	}
+	
 	
 }
