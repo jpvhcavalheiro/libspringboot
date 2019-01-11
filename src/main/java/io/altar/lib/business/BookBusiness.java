@@ -6,14 +6,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-
 import org.springframework.stereotype.Component;
 
 import io.altar.lib.model.Book;
 import io.altar.lib.repositories.BookRepository;
 import io.altar.lib.repositories.UserRepository;
-
-
 
 @Component
 public class BookBusiness {
@@ -75,10 +72,9 @@ public class BookBusiness {
 	 * função insensível a maiúculas e minúsculas que returna se uma superstring
 	 * contem uma substring
 	 * 
-	 * @param Superstring
-	 *            - string que se quer verificar se contem a substring
-	 * @param substring
-	 *            - string que se quer verificar se está contida na superstring
+	 * @param Superstring - string que se quer verificar se contem a substring
+	 * @param substring   - string que se quer verificar se está contida na
+	 *                    superstring
 	 * @return - true se superstring contiver substring e falso caso contrário
 	 * 
 	 */
@@ -142,14 +138,26 @@ public class BookBusiness {
 		}
 		return resultToTopicToTest;
 	}
-	
-	public ArrayList<Book> getAllAvailableBooks(){
+
+	public ArrayList<Book> getAllAvailableBooks() {
 		ArrayList<Book> resultToAvailableBooks = new ArrayList<Book>();
-		for(Book item:bookRepository.getAll()) {
-			if(item.getState().equals("available")) {
+		for (Book item : bookRepository.getAll()) {
+			if (item.getState().equals("available")) {
 				resultToAvailableBooks.add(item);
 			}
 		}
 		return resultToAvailableBooks;
+	}
+
+	public ArrayList<Book> researchBookByIsbn(String isbnToTest) {
+		ArrayList<Book> resultToIsbnToTest = new ArrayList<Book>();
+		for (Book item : bookRepository.getAll()) {
+			if (item.getIsbn() != null) {
+				if (matchStringToSubstring(item.getIsbn(), isbnToTest)) {
+					resultToIsbnToTest.add(item);
+				}
+			}
+		}
+		return resultToIsbnToTest;
 	}
 }
